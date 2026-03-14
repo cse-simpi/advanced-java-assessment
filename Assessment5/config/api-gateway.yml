@@ -5,22 +5,6 @@ spring:
   application:
     name: api-gateway
 
-  config:
-    import: optional:configserver:http://localhost:8888
-
-  cloud:
-    gateway:
-      routes:
-        - id: movie-service
-          uri: lb://movie-service
-          predicates:
-            - Path=/movies/**
-
-        - id: booking-service
-          uri: lb://booking-service
-          predicates:
-            - Path=/bookings/**
-
 eureka:
   client:
     service-url:
@@ -34,3 +18,17 @@ management:
   endpoint:
     health:
       show-details: always
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: movie-service
+          uri: lb://movie-service
+          predicates:
+            - Path=/movies/**
+
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/bookings/**
